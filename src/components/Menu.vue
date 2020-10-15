@@ -26,3 +26,12 @@ export default {
     }
 };
 </script>
+
+
+<style scoped>
+#menu {
+    flex: 1;
+    background-color: goldenrod;
+    text-align: center;
+}
+</style>

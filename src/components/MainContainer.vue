@@ -17,3 +17,12 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+#main {
+    flex: 4;
+    padding: 2%;
+    display: flex;
+    background-color: skyblue;
+}
+</style>
