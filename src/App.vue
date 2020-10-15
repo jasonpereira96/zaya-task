@@ -1,26 +1,76 @@
 <template>
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Header/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue';
 
 export default {
-    name: 'App',
     components: {
-        HelloWorld
+        Header
     }
-}
+};
 </script>
 
 <style>
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+    
+#main {
+    flex: 4;
+}
+
+#main {
+    padding: 2%;
+    display: flex;
+    background-color: skyblue;
+}
+
+#menu {
+    flex: 1;
+    background-color: goldenrod;
     text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+}
+
+.objective-panel {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.objective-panel>div {
+    flex: 1;
+}
+
+.objective-panel>div>div>div {
+    display: flex;
+}
+
+.objective-panel>div>div>div>div {
+    flex: 1;
+    text-align: center;
+}
+.icon {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+}
+
+#video-container {
+    flex: 4;
+}
+
+video {
+    height: 100%;
+    width: 100%;
 }
 </style>
