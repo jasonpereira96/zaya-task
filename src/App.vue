@@ -1,13 +1,15 @@
 <template>
     <Header/>
+    <MainContainer/>
 </template>
 
 <script>
 import Header from './components/Header.vue';
-
+import MainContainer from './components/MainContainer.vue';
 export default {
     components: {
-        Header
+        Header,
+        MainContainer
     }
 };
 </script>
