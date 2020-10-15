@@ -1,32 +1,38 @@
 <template>
     <div id='header'>
-            <div id='header-start'>
-                <img src='https://cdn.iconscout.com/icon/free/png-256/avatar-380-456332.png' id='avatar' />
+        <div id='header-start'>
+            <img src='https://cdn.iconscout.com/icon/free/png-256/avatar-380-456332.png' id='avatar' />
+        </div>
+        <div id='header-mid'>
+            <h1>{{recitalTitle}}</h1>
+            <LessonBar/>
+        </div>
+        <div id='header-end'>
+            <div>
+                {{instrumentTitle}}
             </div>
-            <div id='header-mid'>
-                <h1>Lavender's Blue</h1>
-                <LessonBar/>
-            </div>
-            <div id='header-end'>
-                <div>
-                    Guitar
-                </div>
-                <div>
-                    <button> Exit </button>
-                </div>
+            <div>
+                <button> Exit </button>
             </div>
         </div>
+    </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import LessonBar from './LessonBar.vue';
 
 export default {
+    computed: {
+        ...mapState({
+            recitalTitle: state => state.recitalTitle,
+            instrumentTitle: state => state.instrumentTitle
+        })
+    },
     components: {
         LessonBar
     }
 }
-
 </script>
 
 
@@ -38,9 +44,9 @@ export default {
     padding-bottom: 2%;
 }
 
- #header-start {
-        flex: 1;
-    }
+#header-start {
+    flex: 1;
+}
 
 #header-start>img {
     width: 150px;
@@ -76,6 +82,4 @@ span {
 #header-mid-lower {
     display: flex;
 }
-
-
 </style>

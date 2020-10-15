@@ -6,10 +6,16 @@
 <script>
 import Header from './components/Header.vue';
 import MainContainer from './components/MainContainer.vue';
+import {actions } from './constants/constants';
+
 export default {
     components: {
         Header,
         MainContainer
+    },
+    mounted() {
+        console.log('in mounted');
+        this.$store.dispatch(actions.DATA_FETCH);
     }
 };
 </script>
