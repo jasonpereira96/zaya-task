@@ -46,10 +46,6 @@ export default createStore({
             let data  = payload.data;
             for (let lesson of data.lessonDetails) {
                 lesson.active = false;
-
-                for (let objective of lesson.objectiveDetails) {
-                    objective.state = constants.NOT_DONE;
-                }
             }
             state.instrumentTitle = data.instrumentTitle;
             state.lessonDetails = data.lessonDetails;
@@ -62,6 +58,18 @@ export default createStore({
         },
         [mutations.LESSON_CHANGED]: function (state, payload) {
             state.currentlyActiveLessonId = payload.id;
+        }, 
+        [mutations.MARK_DONE]: function (state, payload) {
+            let objectiveId = payload.id;
+            state.cache.objectives[objectiveId].status = constants.DONE;
+        },
+        [mutations.MARK_NOT_DONE]: function (state, payload) {
+            let objectiveId = payload.id;
+            state.cache.objectives[objectiveId].status = constants.NOT_DONE;
+        },
+        [mutations.MARK_NEXT]: function (state, payload) {
+            let objectiveId = payload.id;
+            state.cache.objectives[objectiveId].status = constants.NEXT_CLASS;
         }
     },
     actions: {

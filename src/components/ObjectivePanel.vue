@@ -1,24 +1,25 @@
 <template>
-    <div class='objective-panel'>
+    <div :class="borderClass">
         <div>
             <h3>Time Signature</h3>
             <div>
                 <div>
-                    <div>3/4</div>
-                    <div>({{duration + ' Mins'}})</div>
+                    <div>{{strings.title}}</div>
+                    <div>({{strings.duration + ' Mins'}})</div>
                 </div>
             </div>
         </div>
         <div>
-            <img class='icon' src='../assets/s_done.png' />
-            <img class='icon' src='../assets/s_not_done.png' />
-            <img class='icon' src='../assets/s_next_class.png' />
+            <img class='icon' src='../assets/s_done.png' @click="done"/>
+            <img class='icon' src='../assets/s_not_done.png'  @click="notDone"/>
+            <img class='icon' src='../assets/s_next_class.png'  @click="nextClass"/>
         </div>
     </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import { mutations, constants } from './../constants/constants';
 
 export default {
     props: [
@@ -26,15 +27,45 @@ export default {
     ],
     computed: {
         ...mapState({
-            duration: function(state) {
+            strings: function(state) {
                 let cache = state.cache;
-                // let lessonId = state.currentlyActiveLessonId;
-                // let lesson = cache.lessons[lessonId];
                 let objective = cache.objectives[this.id];
-
-                return objective.durationInMinutes;
+                return {
+                    duration: objective.durationInMinutes,
+                    title: objective.title,
+                };
+            },
+            borderClass: function(state) {
+                let objective = state.cache.objectives[this.id];
+                switch (objective.status) {
+                    case constants.DONE:
+                        return 'objective-panel done';
+                    case constants.NOT_DONE:
+                        return 'objective-panel not-done';
+                    case constants.NEXT_CLASS:
+                        return 'objective-panel next-class';
+                    default:
+                        return 'objective-panel';
+                }
             }
         })
+    },
+    methods: {
+        done() {
+            this.$store.commit(mutations.MARK_DONE, {
+                id: this.id
+            });
+        },
+        notDone() {
+            this.$store.commit(mutations.MARK_NOT_DONE, {
+                id: this.id
+            });
+        },
+        nextClass() {
+            this.$store.commit(mutations.MARK_NEXT, {
+                id: this.id
+            });
+        }
     }
 };
 </script>
@@ -67,5 +98,15 @@ export default {
     width: 40px;
     height: 40px;
     padding: 5px;
+}
+
+.done {
+    border: 0.5em solid green;
+}
+.not-done {
+    border: 0.5em solid red;
+}
+.next-class {
+    border: 0.5em solid blue;
 }
 </style>

@@ -5,7 +5,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import { mutations } from './../constants/constants';
+import { mutations, constants } from './../constants/constants';
 export default {
     props: [
         'number',
@@ -14,7 +14,13 @@ export default {
     computed: {
         ...mapState({
             className(state) {
-                return this.id === state.currentlyActiveLessonId ? 'number active' : 'number';
+                if (this.id === state.currentlyActiveLessonId) {
+                    return 'number active';
+                }
+                if (this.isLessonComplete(state)) {
+                    return 'number complete';
+                }
+                return 'number';
             }
         })
     },
@@ -25,6 +31,15 @@ export default {
             this.$store.commit(mutations.LESSON_CHANGED, {
                 id
             });
+        },
+        isLessonComplete(state) {
+            let lesson = state.cache.lessons[this.id];
+            return lesson.objectiveDetails
+                .map(objective => objective.id)
+                .every(objectiveId => {
+                    let objective = state.cache.objectives[objectiveId];
+                    return objective.status === constants.DONE;
+                });
         }
     }
 }
@@ -40,5 +55,8 @@ export default {
 
 .number.active {
     background: radial-gradient(circle, white 50%, skyblue 50%);
+}
+.number.complete {
+    background: radial-gradient(circle, green 50%, skyblue 50%);
 }
 </style>
