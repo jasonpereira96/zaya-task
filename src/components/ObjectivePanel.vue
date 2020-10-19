@@ -5,20 +5,38 @@
             <div>
                 <div>
                     <div>3/4</div>
-                    <div>(15 mins)</div>
+                    <div>({{duration + ' Mins'}})</div>
                 </div>
             </div>
         </div>
         <div>
-            <img class='icon' src='../assets/done.png' />
-            <img class='icon' src='../assets/not_done.png' />
-            <img class='icon' src='../assets/next_class.png' />
+            <img class='icon' src='../assets/s_done.png' />
+            <img class='icon' src='../assets/s_not_done.png' />
+            <img class='icon' src='../assets/s_next_class.png' />
         </div>
     </div>
 </template>
 
 <script>
-export default {};
+import { mapState } from 'vuex';
+
+export default {
+    props: [
+        'id'
+    ],
+    computed: {
+        ...mapState({
+            duration: function(state) {
+                let cache = state.cache;
+                // let lessonId = state.currentlyActiveLessonId;
+                // let lesson = cache.lessons[lessonId];
+                let objective = cache.objectives[this.id];
+
+                return objective.durationInMinutes;
+            }
+        })
+    }
+};
 </script>
 
 <style scoped>
@@ -44,6 +62,7 @@ export default {};
     flex: 1;
     text-align: center;
 }
+
 .icon {
     width: 40px;
     height: 40px;

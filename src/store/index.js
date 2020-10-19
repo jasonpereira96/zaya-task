@@ -3,12 +3,13 @@ import { createStore } from 'vuex';
 // import Vue from 'vue';
 import { actions, mutations, constants } from './../constants/constants';
 import { getData } from './../data/data';
+import { getDataMap } from './../utils/utils';
 
 // then had to add in ./store.js as well.
 // Vue.config.devtools = process.env.NODE_ENV === 'development'
 
 var demoState = {
-    _currentlyActiveLessonIndex: 0,
+    _currentlyActiveLessonId: 'b0a34173-c5c9-4911-b1dd-b1004bdce1f1',
     instrumentTitle: '',
     recitalTitle: '',
     lessonsDetails: [{
@@ -36,15 +37,13 @@ export default createStore({
     state: {
         instrumentTitle: '',
         recitalTitle: 'xxx',
-        lessons: [{
-
-        }]
+        lessonDetails: [],
+        cache: ''
     },
     mutations: {
         [mutations.DATA_RECEIVED]: function (state, payload) {
             console.log('data received...');
-            var  data  = payload.data;
-            data.currentlyActiveLessonIndex = 0;
+            let data  = payload.data;
             for (let lesson of data.lessonDetails) {
                 lesson.active = false;
 
@@ -52,13 +51,17 @@ export default createStore({
                     objective.state = constants.NOT_DONE;
                 }
             }
-            data.lessonDetails[0].active = true;
-            // Object.assign(state, data);
             state.instrumentTitle = data.instrumentTitle;
             state.lessonDetails = data.lessonDetails;
             state.recitalTitle = data.recitalTitle;
+            state.currentlyActiveLessonId = state.lessonDetails[0].id;
+            state.lessonDetails[0].active = true;
+            state.cache = getDataMap(data);
             console.log('state set');
             console.log(state);
+        },
+        [mutations.LESSON_CHANGED]: function (state, payload) {
+            state.currentlyActiveLessonId = payload.id;
         }
     },
     actions: {
