@@ -24,5 +24,6 @@ export default {
     padding: 2%;
     display: flex;
     background-color: skyblue;
+    max-height: 100%;
 }
 </style>

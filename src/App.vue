@@ -27,4 +27,8 @@ export default {
     display: flex;
     flex-direction: column;
 }
+html, body {
+    height: 100%;
+    width: 100%;
+}
 </style>

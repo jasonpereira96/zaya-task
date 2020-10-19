@@ -3,7 +3,9 @@
         <h2>Menu</h2>
         <hr />
         <div id='link-list' v-if="dataArrived">
-            <div v-for="objective in objectiveDetails" :key="objective.id" class="video-link-div">Video</div>
+            <div v-for="(objective, index) in objectiveDetails" :key="objective.id" class="video-link-div">
+                <a :href="objective.objectiveVideosDetails[0].url">{{`Video Link ${index + 1}`}}</a>
+            </div>
         </div>
     
         <div id='objective-panel-holder' v-if="dataArrived">
@@ -43,6 +45,18 @@ export default {
     flex: 1;
     background-color: goldenrod;
     text-align: center;
+    overflow-y: scroll;
+}
+
+#objective-panel-holder {
+    /* position: fixed; */
+    /* top: 10px; */
+    /* left: 10px; */
+    /* bottom: 10px; */
+    /* width: 180px; */
+    /* background-color: #eee; */
+    /* overflow: scroll; */
+    min-height: min-content;
 }
 
 .video-link-div {

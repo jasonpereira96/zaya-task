@@ -4,8 +4,8 @@
             <h3>Time Signature</h3>
             <div>
                 <div>
-                    <div>{{strings.title}}</div>
-                    <div>({{strings.duration + ' Mins'}})</div>
+                    <div class="title">{{strings.title}}</div>
+                    <div class="duration">({{strings.duration + ' Mins'}})</div>
                 </div>
             </div>
         </div>
@@ -89,9 +89,17 @@ export default {
     display: flex;
 }
 
-.objective-panel>div>div>div>div {
+.title {
+    flex: 2;
+    text-align: center;
+}
+.duration {
     flex: 1;
     text-align: center;
+}
+
+.objective-panel img {
+    cursor: pointer;
 }
 
 .icon {

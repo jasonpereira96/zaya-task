@@ -1,6 +1,8 @@
 <template>
     <div id='video-container'>
-        <video controls src=''></video>
+        <iframe src="https://player.vimeo.com/video/340877183?app_id=122963" 
+        width="426" height="500" frameborder="0" allow="autoplay; fullscreen" 
+        allowfullscreen title="Lion Sleeps Tonight L1V1 - RH, C Hand Position - 5 finger exercise"></iframe>
     </div>
 </template>
 
@@ -10,10 +12,10 @@ export default {};
 
 <style scoped>
 #video-container {
-    flex: 4;
+    flex: 2.5;
 }
 
-video {
+iframe {
     height: 100%;
     width: 100%;
 }
