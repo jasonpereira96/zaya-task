@@ -6,7 +6,7 @@
 <script>
 import Header from './components/Header.vue';
 import MainContainer from './components/MainContainer.vue';
-import {actions } from './constants/constants';
+import { actions } from './constants/constants';
 
 export default {
     components: {
@@ -27,7 +27,9 @@ export default {
     display: flex;
     flex-direction: column;
 }
-html, body {
+
+html,
+body {
     height: 100%;
     width: 100%;
 }

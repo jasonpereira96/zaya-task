@@ -6,11 +6,13 @@ export const constants = {
 };
 export const mutations = {
     DATA_RECEIVED: 'DATA_RECEIVED',
+    VIDEOS_RECEIVED: 'VIDEOS_RECEIVED',
     LESSON_CHANGED: 'LESSON_CHANGED',
     MARK_DONE: 'MARK_DONE',
     MARK_NOT_DONE: 'MARK_NOT_DONE',
     MARK_NEXT: 'MARK_NEXT'
 };
 export const actions = {
-    DATA_FETCH: 'DATA_FETCH'
+    DATA_FETCH: 'DATA_FETCH',
+    VIDEOS_FETCH: 'VIDEOS_FETCH'
 };

@@ -21,3 +21,18 @@ export function getDataMap(data) {
     }
     return cache;
 }
+
+export function getAllVideoUrls(state) {
+    let objectives = state.cache.objectives;
+    let urls = [];
+    console.log(Object.values(objectives));
+    for (let objective of Object.values(objectives)) {
+        for (let item of objective.objectiveVideosDetails) {
+            urls.push({
+                url: item.url,
+                id: item.objective
+            });
+        }
+    }
+    return urls;
+}

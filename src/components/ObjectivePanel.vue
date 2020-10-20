@@ -23,7 +23,8 @@ import { mutations, constants } from './../constants/constants';
 
 export default {
     props: [
-        'id'
+        'id', 
+        'last'
     ],
     computed: {
         ...mapState({
@@ -36,17 +37,26 @@ export default {
                 };
             },
             borderClass: function(state) {
+                console.log(this.last)
                 let objective = state.cache.objectives[this.id];
+                let class_ = 'objective-panel';
                 switch (objective.status) {
                     case constants.DONE:
-                        return 'objective-panel done';
+                        class_ = 'objective-panel done';
+                        break;
                     case constants.NOT_DONE:
-                        return 'objective-panel not-done';
+                        class_ = 'objective-panel not-done';
+                        break;
                     case constants.NEXT_CLASS:
-                        return 'objective-panel next-class';
+                        class_ = 'objective-panel next-class';
+                        break;
                     default:
-                        return 'objective-panel';
+                        class_ = 'objective-panel';
                 }
+                if (this.last) {
+                    class_ = class_ + ' ' + 'last';
+                }
+                return class_;
             }
         })
     },
@@ -100,6 +110,10 @@ export default {
 
 .objective-panel img {
     cursor: pointer;
+}
+
+.last {
+    margin-bottom: 400px;
 }
 
 .icon {

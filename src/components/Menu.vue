@@ -9,7 +9,8 @@
         </div>
     
         <div id='objective-panel-holder' v-if="dataArrived">
-            <ObjectivePanel v-for="objective in objectiveDetails" :key="objective.id" :id="objective.id" />
+            <ObjectivePanel v-for="(objective, index) in objectiveDetails" :key="objective.id" 
+                :id="objective.id" :last="index === objectiveDetails.length - 1"/>
         </div>
     </div>
 </template>
