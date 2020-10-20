@@ -50,17 +50,14 @@ export default {
 }
 
 #objective-panel-holder {
-    /* position: fixed; */
-    /* top: 10px; */
-    /* left: 10px; */
-    /* bottom: 10px; */
-    /* width: 180px; */
-    /* background-color: #eee; */
-    /* overflow: scroll; */
     min-height: min-content;
 }
 
 .video-link-div {
     cursor: pointer;
+}
+
+hr {
+    border-top: 1px solid black;
 }
 </style>
