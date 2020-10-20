@@ -1,7 +1,7 @@
 <template>
     <div :class="borderClass">
         <div>
-            <h3>Time Signature</h3>
+            <h3>{{strings.recitalTitles}}</h3>
             <div>
                 <div>
                     <div class="title">{{strings.title}}</div>
@@ -34,6 +34,7 @@ export default {
                 return {
                     duration: objective.durationInMinutes,
                     title: objective.title,
+                    recitalTitle: state.recitalTitle
                 };
             },
             borderClass: function(state) {

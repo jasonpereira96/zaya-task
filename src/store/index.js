@@ -52,6 +52,7 @@ let store = createStore({
             state.lessonDetails = data.lessonDetails;
             state.recitalTitle = data.recitalTitle;
             state.currentlyActiveLessonId = state.lessonDetails[0].id;
+            state.currentlyActiveObjectiveId = state.lessonDetails[0].objectiveDetails[0].id;
             state.lessonDetails[0].active = true;
             state.cache = getDataMap(data);
             console.log('state set');
@@ -80,18 +81,20 @@ let store = createStore({
         [mutations.MARK_NEXT]: function (state, payload) {
             let objectiveId = payload.id;
             state.cache.objectives[objectiveId].status = constants.NEXT_CLASS;
+        },
+        [mutations.THUMBNAIL_CLICKED]: function (state, payload) {
+            let { id } = payload;
+            state.currentlyActiveObjectiveId = id;
         }
     },
     actions: {
         [actions.DATA_FETCH]: async function ({ commit }) {
-            // console.log('fetching...');
             let data = await getData();
             commit(mutations.DATA_RECEIVED, {
                 data
             });
         },
         [actions.VIDEOS_FETCH]: async function (param, { height, width }) {
-            // console.log('fetching videos...');
             let commit = param.commit;
             let state = param.state;
             let urls = getAllVideoUrls(state);

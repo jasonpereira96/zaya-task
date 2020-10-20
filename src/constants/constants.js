@@ -10,7 +10,8 @@ export const mutations = {
     LESSON_CHANGED: 'LESSON_CHANGED',
     MARK_DONE: 'MARK_DONE',
     MARK_NOT_DONE: 'MARK_NOT_DONE',
-    MARK_NEXT: 'MARK_NEXT'
+    MARK_NEXT: 'MARK_NEXT',
+    THUMBNAIL_CLICKED: 'THUMBNAIL_CLICKED'
 };
 export const actions = {
     DATA_FETCH: 'DATA_FETCH',

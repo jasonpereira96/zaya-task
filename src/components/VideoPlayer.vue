@@ -3,10 +3,8 @@
         <div v-if="dataArrived" id='wrapper'>
             <div v-html="iframe" id='iframe-wrapper'></div>
             <div id='thumbnails-wrapper'>
-                <div class='thumbnail'></div>
-                <div class='thumbnail'></div>
-                <div class='thumbnail'></div>
-                <div class='thumbnail'></div>
+                <Thumbnail v-for="objective in objectiveDetails" :key="objective.id" :id="objective.id">
+                </Thumbnail>
             </div>
         </div>
         <h2 v-else>Loading</h2>
@@ -14,23 +12,31 @@
 </template>
 
 <script>
-// import { actions } from './../constants/constants';
 import { mapState } from 'vuex';
+import Thumbnail from './Thumbnail';
 
 export default {
     computed: {
         ...mapState({
+            objectiveDetails(state) {
+                let currentlyActiveLessonId = state.currentlyActiveLessonId;
+                return state.cache.lessons[currentlyActiveLessonId].objectiveDetails;
+            },
             dataArrived: function(state) {
-                console.log('in data arrived');
-                console.log(state);
-                console.log(typeof state.cache === 'object');
                 return typeof state.cache === 'object';
             },
             iframe: function(state) {
-                let objectives = state.cache.objectives;
-                return Object.values(objectives)[0].vimeo ? Object.values(objectives)[0].vimeo.html : '';
+                let objectiveId = state.currentlyActiveObjectiveId;
+                let objective = state.cache.objectives[objectiveId];
+                if (!objective.vimeo) {
+                    return ''
+                }
+                return objective.vimeo.html;
             }
         })
+    },
+    components: {
+        Thumbnail
     }
 };
 </script>
@@ -53,20 +59,16 @@ export default {
     flex: 4;
     display: flex;
 }
+
 #thumbnails-wrapper {
     flex: 1;
     display: flex;
 }
-.thumbnail {
-    flex: 1;
-    background-color: green;
-}
+
 iframe {
     height: 100%;
     width: 100%;
     flex: 1;
-    /* position: absolute; */
-    /* height: 100%;  */
     border: none;
 }
 </style>
