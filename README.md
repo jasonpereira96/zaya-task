@@ -1,5 +1,10 @@
 # zaya-task
 
+App deployed at https://jasonpereira96.github.io/zaya-task
+
+
+
+
 ## Project setup
 ```
 npm install
