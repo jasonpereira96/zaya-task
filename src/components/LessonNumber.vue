@@ -49,14 +49,16 @@ export default {
 .number {
     flex: 1;
     padding: 2em;
-    background: radial-gradient(circle, orange 50%, skyblue 50%);
+    background: radial-gradient(circle, #ff9613 50%, #e6e7e9 50%);
     cursor: pointer;
+    color: black;
+    /* font-weight: bold; */
 }
 
 .number.active {
-    background: radial-gradient(circle, white 50%, skyblue 50%);
+    background: radial-gradient(circle, white 50%, #e6e7e9 50%);
 }
 .number.complete {
-    background: radial-gradient(circle, green 50%, skyblue 50%);
+    background: radial-gradient(circle, #94d700 50%, #e6e7e9 50%);
 }
 </style>

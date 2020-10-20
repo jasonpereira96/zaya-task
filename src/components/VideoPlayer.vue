@@ -58,6 +58,7 @@ export default {
 #iframe-wrapper {
     flex: 4;
     display: flex;
+    background:url('../assets/loading.png') center center no-repeat;
 }
 
 #thumbnails-wrapper {

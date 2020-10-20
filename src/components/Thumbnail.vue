@@ -46,6 +46,13 @@ export default {
     background-position: center;
     margin: 2%;
     cursor: pointer;
-    max-width: 184px;  
+    max-width: 184px;
+    -webkit-box-shadow: 3px 5px 6px grey;
+    -moz-box-shadow: 3px 5px 6px grey;
+    box-shadow: 3px 5px 6px grey;
+}
+
+.thumbnail:hover {
+    transform: scale(1.1, 1.1);
 }
 </style>

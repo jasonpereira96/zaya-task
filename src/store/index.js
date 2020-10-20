@@ -1,43 +1,14 @@
 import { createStore } from 'vuex';
 
-// import Vue from 'vue';
 import { actions, mutations, constants } from './../constants/constants';
 import { getData } from './../data/data';
 import { getDataMap, getAllVideoUrls } from './../utils/utils';
 import { getEmbedData } from './../data/api';
 
-// then had to add in ./store.js as well.
-// Vue.config.devtools = process.env.NODE_ENV === 'development'
-
-var demoState = {
-    _currentlyActiveLessonId: 'b0a34173-c5c9-4911-b1dd-b1004bdce1f1',
-    instrumentTitle: '',
-    recitalTitle: '',
-    lessonsDetails: [{
-        _active: true,
-        id: '2dsd',
-        lessonTitle: '',
-        objectiveDetails: [{
-            id: 'fdfgd',
-            objectiveVideosDetails: [],
-            recital: '',
-            created: '',
-            updated: '',
-            title: '',
-            order: 1,
-            durationInMinutes: 5,
-            classFlow: 'sdsdsd',
-            lesson: 'some id',
-            _state: 'DONE' //constants
-        }]
-    }]
-};
-console.log(demoState)
-
 let store = createStore({
     state: {
         instrumentTitle: '',
-        recitalTitle: 'xxx',
+        recitalTitle: '',
         lessonDetails: [],
         cache: ''
     },
@@ -69,6 +40,8 @@ let store = createStore({
         },
         [mutations.LESSON_CHANGED]: function (state, payload) {
             state.currentlyActiveLessonId = payload.id;
+            state.currentlyActiveObjectiveId = getFirstObjectiveId(state, payload.id);
+
         },
         [mutations.MARK_DONE]: function (state, payload) {
             let objectiveId = payload.id;
@@ -104,8 +77,6 @@ let store = createStore({
                 data
             });
         }
-    },
-    modules: {
     }
 });
 
@@ -115,13 +86,17 @@ const unsubscribe = store.subscribe(function (mutation) {
             let videoContainer = document.getElementById('iframe-wrapper');
             let height = videoContainer.clientHeight;
             let width = videoContainer.clientWidth;
-            console.log(`clientHeight: ${height}`);
             store.dispatch(actions.VIDEOS_FETCH, {
                 height, width
             });
             unsubscribe();
         }, 500);
     }
-})
+});
+
+function getFirstObjectiveId(state, lessonId) {
+    let lesson = state.cache.lessons[lessonId];
+    return lesson.objectiveDetails[0].id;
+}
 
 export default store;

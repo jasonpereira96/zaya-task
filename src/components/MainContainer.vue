@@ -23,7 +23,8 @@ export default {
     flex: 4;
     padding: 2%;
     display: flex;
-    background-color: skyblue;
+    background-color: #e6e7e9;
     max-height: 100%;
+    font-family: "Comic Sans MS", cursive, sans-serif;
 }
 </style>

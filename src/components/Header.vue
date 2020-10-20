@@ -9,10 +9,10 @@
         </div>
         <div id='header-end'>
             <div>
-                {{instrumentTitle}}
+                <h2>{{instrumentTitle}}</h2>
             </div>
             <div>
-                <button> Exit </button>
+                <div id='exit' class='shadow'> Exit Session</div>
             </div>
         </div>
     </div>
@@ -37,14 +37,17 @@ export default {
 
 <style scoped>
 #header {
-    background-color: skyblue;
+    background-color: #e6e7e9;
     flex: 1;
     display: flex;
     padding-bottom: 2%;
+    font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 #header-start {
     flex: 1;
+    text-align: center;
+    padding-top: 20px;
 }
 
 #header-start>img {
@@ -55,7 +58,7 @@ export default {
 #header-mid {
     flex: 3;
     text-align: center;
-    color: red;
+    color: #c01661;
 }
 
 #header-end {
@@ -70,6 +73,7 @@ span {
     flex: 1;
     display: flex;
     flex-direction: column;
+    color: #c01661;
 }
 
 #header-end>div {
@@ -80,5 +84,20 @@ span {
 
 #header-mid-lower {
     display: flex;
+}
+
+#exit {
+    background-color: #c52b2d;
+    color: white;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    margin-left: 20%;
+    margin-right: 20%;
+    cursor: pointer;
+}
+.shadow {
+  -webkit-box-shadow: 3px 5px 6px grey;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 5px 6px grey;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         3px 5px 6px grey;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
 </style>

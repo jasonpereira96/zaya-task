@@ -124,12 +124,12 @@ export default {
 }
 
 .done {
-    border: 0.5em solid green;
+    border: 0.5em solid #91d703;
 }
 .not-done {
-    border: 0.5em solid red;
+    border: 0.5em solid #f65937;
 }
 .next-class {
-    border: 0.5em solid blue;
+    border: 0.5em solid #1e7f9b;
 }
 </style>

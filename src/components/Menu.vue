@@ -44,7 +44,7 @@ export default {
 <style scoped>
 #menu {
     flex: 1;
-    background-color: goldenrod;
+    background-color: #ffd05c;
     text-align: center;
     overflow-y: scroll;
 }

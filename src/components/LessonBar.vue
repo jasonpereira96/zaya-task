@@ -1,6 +1,6 @@
 <template>
     <div id='header-mid-lower'>
-        <div id='lessons-word'>Lessons: </div>
+        <div id='lessons-word'>Lessons:</div>
         <div id='list'>
             <LessonNumber v-for="(lesson, index) in lessonDetails" :key="lesson.id" :number="index" :id="lesson.id">
 
@@ -29,6 +29,7 @@ export default {
 #lessons-word {
     flex: 1;
     padding: 2em;
+    color: black;
 }
 
 #list {
